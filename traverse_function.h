@@ -3,6 +3,8 @@
 
 #include "usr-spinlock.h"
 //#include <stdlib.h>
+#include <linux/dram_interface.h>
+
 
 #ifndef INTERNAL_SIZE_T
 #define INTERNAL_SIZE_T size_t
@@ -130,7 +132,7 @@ struct malloc_state
   /* add update_faulty_address flag: END */
 };
 typedef struct malloc_state *mstate;
-
+/*
 typedef struct free_chunk_info {
   
   void* start; // pointer to the beginning of a free chunk, containing the (header+data)
@@ -139,9 +141,10 @@ typedef struct free_chunk_info {
 
   struct free_chunk_info * next;
 } free_chunk_info_t;
+*/
 typedef struct free_chunk_info *free_chunk_info_ptr;
 
 
 
-free_chunk_info_t* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len);
+struct free_chunk_info* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len);
 #endif

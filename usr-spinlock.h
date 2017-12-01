@@ -17,7 +17,7 @@ typedef struct {
 
 /* Pause instruction to prevent excess processor bus usage */
 #define cpu_relax() asm volatile("pause\n": : :"memory")
-
+/*
 SPINLOCK_ATTR char __usrtestandset(usr_spinlock *p, long old_val, long new_val)
 {
     char result = 0;
@@ -58,5 +58,5 @@ SPINLOCK_ATTR void usr_spin_init(usr_spinlock *s)
 {
     usr_spin_unlock(s); 
 }
-
+*/
 #define USR_SPINLOCK_INITIALIZER { 0 }

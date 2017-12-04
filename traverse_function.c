@@ -16,7 +16,7 @@ int inside_the_page(mchunkptr p ,size_t VpageNO)
   }
 }
 
-void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_info_ptr *free_chunk_info_current_ptr, mchunkptr *p_ptr, size_t *num)
+void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_info_ptr *free_chunk_info_current_ptr, mchunkptr *p_ptr)
 {
   if (free_chunk_info_head_ptr == NULL)
   {
@@ -31,7 +31,6 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
   (*free_chunk_info_current_ptr)->start = *p_ptr;
   (*free_chunk_info_current_ptr)->len = chunksize(*p_ptr); // size of the data chunk (including header and mem)
   //(*free_chunk_info_current_ptr)->next = NULL;
-  (*num)++;
 }
 
 /* 
@@ -59,7 +58,7 @@ free_chunk_info_ptr traverse (void* arena_start_ptr, size_t VpageNO, size_t* len
     {
       if (inside_the_page(p, VpageNO))
       {
-        add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p, len);
+        add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p);
       }
     }
   }
@@ -71,7 +70,7 @@ free_chunk_info_ptr traverse (void* arena_start_ptr, size_t VpageNO, size_t* len
       //address: p  size: chunksize(p)
       if (inside_the_page(p, VpageNO))
       {
-        add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p, len);
+        add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p);
       }
     }
   }
@@ -81,7 +80,7 @@ free_chunk_info_ptr traverse (void* arena_start_ptr, size_t VpageNO, size_t* len
   {
     if (inside_the_page(p, VpageNO))
     {
-      add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p, len);
+      add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p);
     }
   }
   return free_chunk_info_head;

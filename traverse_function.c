@@ -20,17 +20,17 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
 {
   if (free_chunk_info_head_ptr == NULL)
   {
-    *free_chunk_info_head_ptr = *free_chunk_info_current_ptr = (free_chunk_info_ptr)kmalloc(sizeof(struct free_chunk_info), GFP_KERNEL);
+    //*free_chunk_info_head_ptr = *free_chunk_info_current_ptr = (free_chunk_info_ptr)kmalloc(sizeof(struct free_chunk_info), GFP_KERNEL);
     //*free_chunk_info_head_ptr = *free_chunk_info_current_ptr = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info_t));
   } else
   {
-    (*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)kmalloc(sizeof(struct free_chunk_info), GFP_KERNEL);
+    //(*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)kmalloc(sizeof(struct free_chunk_info), GFP_KERNEL);
     //(*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info_t));
-    (*free_chunk_info_current_ptr) = (*free_chunk_info_current_ptr)->next;
+    //(*free_chunk_info_current_ptr) = (*free_chunk_info_current_ptr)->next;
   }
   (*free_chunk_info_current_ptr)->start = *p_ptr;
   (*free_chunk_info_current_ptr)->len = chunksize(*p_ptr); // size of the data chunk (including header and mem)
-  (*free_chunk_info_current_ptr)->next = NULL;
+  //(*free_chunk_info_current_ptr)->next = NULL;
   (*num)++;
 }
 

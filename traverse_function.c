@@ -78,10 +78,7 @@ free_chunk_info_ptr traverse (void* arena_start_ptr, size_t VpageNO, size_t* len
   //get top chunk
   if (inside_the_page(top_addr, VpageNO))
   {
-    if (inside_the_page(p, VpageNO))
-    {
-      add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &p);
-    }
+      add_free_chunk(&free_chunk_info_head, &free_chunk_info_current, &top_addr);
   }
   return free_chunk_info_head;
 }
